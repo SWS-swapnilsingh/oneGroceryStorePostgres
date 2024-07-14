@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mgcat{
+            border: 2px solid black;
+            position: relative;
+            top: 200px;
+            left: 505px;
+            height: 98px;
+            width: 170px;
+            padding: 10px;
+            padding-bottom: 19px;
+        }
+        </style>
+</head>
+<body>
+    <div id="mgcat">
+    <form action="/addcategory" method="POST">
+        category name:
+        <input type="text" name="categoryname" required><br><br>
+
+        <button type="submit"> submit </button>
+    </form>
+    <a href="/managerhomepage">Back</a>
+    </div>
+</body>
+</html>

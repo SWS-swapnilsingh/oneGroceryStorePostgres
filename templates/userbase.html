@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        
+        #container{
+            display: inline-block;
+            
+        }
+
+        #taskbar{
+            position: relative;
+            display: inline-block;
+            top: 10px;
+            left: 10px;
+            height: 50px;
+            width: 1231px;
+            border: 2px solid black;
+            background-color: rgb(218, 32, 172);
+            margin: 0;
+            padding: 5px;
+            z-index: 100;
+        }
+
+        #categ{
+            position: relative;
+            display: inline-block;
+            top: 19px;
+            left: 10px;
+            height: 1000px;
+            width: 300px;
+            border: 2px solid black;
+            background-color: goldenrod;
+            margin: 0;
+            padding: 1px;
+            z-index: 100;
+        }
+
+        .filtrs{
+            position: relative;
+            display: inline-block;
+            top: 502px;
+            left: -300px;
+            height: 300px;
+            width: 300px;
+            border: 2px solid black;
+            background-color: goldenrod;
+            margin: 0;
+            padding: 1px;
+            z-index: 101;
+        }
+
+        
+
+        #prodt{
+            position: relative;
+            display: inline-block;
+            top: -987px;
+            left: 314px;
+            height: 1000px;
+            width: 935px;
+            border: 2px solid black;
+            background-color: rgb(17, 209, 132);
+            margin: 0;
+            padding: 1px;
+            z-index: 100;
+        }
+
+        #footer{
+            position: relative;
+            display: inline-block;
+            top: -1000px;
+            left: 10px;
+            height: 200px;
+            width: 1239px;
+            border: 2px solid black;
+            background-color: rgb(118, 115, 117);
+            margin: 0;
+            padding: 1px;
+            z-index: 100;
+        }
+
+        .t{
+            padding: 5px;
+            position: relative;
+            top: 10px;
+            left: 10px;
+        }
+
+        #logo{
+            position: absolute;
+            top: -29px;
+            left: 10px;
+            width: 107px;
+            height: 112px;
+            z-index: 201;
+        }
+        
+        #taskBarElem{
+            position: relative;
+            top: 6px;
+            left: 914px;
+        }
+    </style>
+    {% block styleforlandingpage %}
+    {% endblock %}
+</head>
+<body>
+    <h1 style="padding-left: 10px">USER LANDING PAGE</h1>
+
+    <div id="taskbar">
+        <a href="#"><img src="{{url_for('static', filename='logo.png')}}" alt="" id="logo" class="t"></a>
+        <div id="taskBarElem">
+        <a href="/homepage" class="t">homepage</a>&nbsp;
+        <a href="/search" class="t">search</a>&nbsp;
+        <a href="#" class="t">about</a>&nbsp;
+        <a href="/cart" class="t">Mycart</a>&nbsp;
+        <a href="/" class="t">logout</a>&nbsp;
+        </div>
+    </div>
+
+        <div id="categ">
+            {% block categoryblock %}
+            {% endblock %}
+        </div>
+
+        <div class="filtrs">
+            {% block fiteritems %}
+                <form action="/overallfilter" method="POST">
+                    FILTERS <br>
+                    price range <br>
+                    start:
+                    <input type="text" name="start" required><br>
+                    upto:
+                    <input type="text" name="upto" required><br>
+                    
+                    <button type="submit">FILTER</button>
+                </form> 
+            {% endblock %}           
+        </div>
+
+        
+        <div id="prodt">
+            {% block productblock %}
+            {% endblock %}
+
+    </div>
+    
+    <div id="footer">
+        addresss map company details social media links
+    </div>
+    <!-- <a href="/deletecategory/{{categoryId}}"> Delete Category</a> -->
+</body>
+</html>
+
+

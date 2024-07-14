@@ -1,0 +1,84 @@
+<!-- this route is for, when somebody click on the perticular category in a sidebar -->
+
+
+{% extends "userbase.html" %}
+
+    {% block styleforlandingpage %}
+        <style>
+            #eachcat{
+                padding-left: 20px;
+                padding-bottom: 5px;
+                padding-top: 5px;
+            }
+
+            .cards {
+                display: inline-block;
+                width: 22%;
+            /*	background-color: grey;*/
+                border-radius: 5px;
+                margin: 10px;
+                border: 0.1px solid gray;
+                box-shadow: 2px 2px 10px black;  /* left right blur color*/
+            }
+            
+            img{
+                width: 100%;
+                height: 20%;
+                border-top-right-radius: 5px;
+                border-top-left-radius: 5px;
+                margin-bottom: 0;
+            }
+
+            .details{
+                margin: 0;
+                padding: 13px;
+                background-color: #d8d3d3;
+            }
+        </style>
+    {% endblock %}
+
+    {% block categoryblock %}
+        <!-- <p> {{c1}} </p> -->
+            {% for c in c1 %}
+                <div id="eachcat"><a href="/eachcategory/{{c.category_id}}">{{ c.category_name }}</a></div>
+            {% endfor %}
+    {% endblock %}
+
+    {% block fiteritems %}
+        <form action="/searcheachcategory/{{perticular_c.category_id}}" method="POST">
+
+            FILTERS <br>
+            price range <br>
+            start:
+            <input type="text" name="start" required><br>
+            upto:
+            <input type="text" name="upto" required><br>
+            <!-- <input type="text" name="categoryId" value="{{perticular_c.category_id}}" disabled><br> -->
+            
+            <button type="submit">FILTER</button>
+        </form> 
+    {% endblock %}
+
+    {% block productblock %}
+        <p style="padding: 5px;"><b>{{perticular_c.category_name}}</b></p>
+        {% for p in p1 %}
+        <div class="cards">
+            <div><img src="{{url_for('static', filename='placeholderimage.jpeg')}}"></div>
+            <div class="details">
+                <div>{{ p.product_name }}</div>
+                <div>Price: {{p.price_unit}} / {{p.unit}}</div>
+                <div>
+                    <a href="/buying/{{p.product_id}}/{{perticular_c.category_id}}">ADD</a>
+
+                    {% if 0 < p.quantity <= 5 %}
+                        <h5 style="display: inline;"> Hurry up only {{p.quantity}} left </h5>
+                    {% endif %}
+
+                    {% if p.quantity <= 0 %}
+                        <a href="#">Out of stock</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endblock %}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .h{
+            padding: 10px;
+        }
+        .p{
+            padding-left: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td class="p h"><b>Product Name</b></td>
+                <td class="p h"><b>Price/unit</b></td>
+                <td class="p h"><b>unit</b></td>
+                <td class="p h"><b>Action</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in buyingproduct %}
+            <tr>
+                <td class="p">{{p.product_name}}</td>
+                <td class="p">{{p.price_unit}}</td>
+                <td class="p"> /{{p.unit}}</td>
+                <td class="p"><a href="/deleteitemsfromcart/{{p.product_id}}">remove</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p class="p">Grand Total: {{totalamt}} &nbsp;&nbsp;&nbsp;  <a href="/buy">Buy all</a></p>
+    <a href="/homepage">Back</a>
+</body>
+</html>

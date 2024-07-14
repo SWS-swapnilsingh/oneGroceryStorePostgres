@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #mgprod{
+        border: 2px solid black;
+        position: relative;
+        top: 75px;
+        left: 505px;
+        height: 324px;
+        width: 170px;
+        padding: 10px;
+        padding-bottom: 19px;
+    }
+    </style>
+</head>
+<body>
+    <div id="mgprod">
+    <form action="/addproduct/{{categoryId}}" method="POST">
+        product name:
+        <input type="text" name="product_name" required>
+        price:
+        <input type="text" name="price_unit" required>
+        unit:
+        <input type="text" name="unit" required>
+        manufacture year:
+        <input type="text" name="manufac_year" required>
+        expiry year:
+        <input type="text" name="exp_year" required>
+        quantity:
+        <input type="text" name="qty" required>
+        discount percentage:
+        <input type="text" name="discount" required><br><br>
+
+        <button type="submit"> submit </button>
+    </form>
+    <a href="/managereachcategory/{{categoryId}}">Back</a>
+    </div>
+</body>
+</html>

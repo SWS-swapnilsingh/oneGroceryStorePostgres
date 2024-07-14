@@ -1,0 +1,101 @@
+<!-- this route is for, when somebody click on the perticular category in a sidebar -->
+
+
+{% extends "managerbase.html" %}
+
+    {% block styleforlandingpage %}
+        <style>
+            #eachcat{
+                padding-left: 20px;
+                padding-bottom: 5px;
+                padding-top: 5px;
+            }
+
+            .cards {
+                display: inline-block;
+                width: 22%;
+            /*	background-color: grey;*/
+                border-radius: 5px;
+                margin: 10px;
+                border: 0.1px solid gray;
+                box-shadow: 2px 2px 10px black;  /* left right blur color*/
+            }
+            
+            img{
+                width: 100%;
+                height: 20%;
+                border-top-right-radius: 5px;
+                border-top-left-radius: 5px;
+                margin-bottom: 0;
+            }
+
+            .details{
+                margin: 0;
+                padding: 13px;
+                background-color: #d8d3d3;
+            }
+        </style>
+    {% endblock %}
+
+    {% block categoryblock %}
+        <!-- add new category button -->
+        <div id="eachcat"><a href="/addcategory">Add new category</a></div>
+        <!-- <p> {{c1}} </p> -->
+            {% for c in c1 %}
+                <div id="eachcat"><a href="/managereachcategory/{{c.category_id}}">{{ c.category_name }}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/updatecategory/{{c.category_id}}">Update</a>&nbsp;<a href="/reallydeletecategory">Delete</a></div>
+            {% endfor %}
+    {% endblock %}
+
+    {% block fiteritems %}
+        <form action="/managersearcheachcategory/{{perticular_c.category_id}}" method="POST">
+            FILTERS <br>
+            price range <br>
+            start:
+            <input type="text" name="start" required><br>
+            upto:
+            <input type="text" name="upto" required><br>
+            <!-- <input type="text" name="categoryId" value="{{perticular_c.category_id}}" disabled><br> -->
+            
+            <button type="submit">FILTER</button>
+        </form> 
+    {% endblock %}
+
+    {% block productblock %}
+        <p style="padding: 5px;"><b>{{perticular_c.category_name}}</b></p>
+        {% if p1|length == 0 %}
+            <!-- add new product -->
+            <div class="cards">
+                <div><img src="{{url_for('static', filename='placeholderimage.jpeg')}}"></div>
+                <div class="details">
+                    <div>&nbsp;</div>
+                    <a href="/addproduct/{{perticular_c.category_id}}">Add new product</a>
+                    <div>&nbsp;</div>
+                </div>
+            </div>
+        {% else %}
+
+        <!-- add new product -->
+        <div class="cards">
+            <div><img src="{{url_for('static', filename='placeholderimage.jpeg')}}"></div>
+            <div class="details">
+                <div>&nbsp;</div>
+                <a href="/addproduct/{{perticular_c.category_id}}">Add new product</a>
+                <div>&nbsp;</div>
+            </div>
+        </div>
+
+        {% for p in p1 %}
+        <div class="cards">
+            <div><img src="{{url_for('static', filename='placeholderimage.jpeg')}}"></div>
+            <div class="details">
+                <div>{{ p.product_name }}</div>
+                <div>Price: {{p.price_unit}} / {{p.unit}}</div>
+                <div>
+                    <a href="/updateproduct/{{p.product_id}}">Update</a>
+                    <a href="/really">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    {% endblock %}
