@@ -5,10 +5,16 @@ import matplotlib.pyplot as plt
 matplotlib.use('Agg')
 
 # ========================== database details =================================
-database="test"
-user="postgres"
-password="qazwsx"
-host="127.0.0.1"
+# database="test"
+# user="postgres"
+# password="qazwsx"
+# host="127.0.0.1"
+# port="5432"
+
+database="mydatabaseone"
+user="myuserone"
+password="PElbOd2HhXTLXxUlitMBnHHiv2C78ICW"
+host="dpg-cq9sngqju9rs73ba2f3g-a"
 port="5432"
 
 # ========================= Configuration ===============================================
